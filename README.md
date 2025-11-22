@@ -13,4 +13,6 @@ Reasonable limit for amount of props (chair, rock, etc.) placed 1 (or 2) -> 12
 <br/>
 Users blocked on Steam are now also blocked in-game
 <br/>
+Servers with a player cap larger than 12 are now displayed in the lobby list
+<br/>
 </details>
