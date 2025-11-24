@@ -11,6 +11,7 @@ This project aims to fix all remaining game issues and incomplete/unreleased con
 
 - Reasonable limit for amount of props (chair, rock, etc.) placed 1 (or 2) -> 12
 - Users blocked on Steam are now also blocked in-game
-- Servers with a player cap larger than 12 are now displayed in the lobby list
+- Lobbies with a player cap higher than 12 are no longer hidden from the lobby browser list
+- Lobbies with more than 12 players are not marked as `Modded`
 
 </details>

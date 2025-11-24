@@ -26,7 +26,6 @@ $manifest | ConvertTo-Json -Depth 1 | Set-Content $ThunderstoreManifestPath
 Copy-Item $PckPath ".\thunderstore\GDWeave\mods"
 Copy-Item ".\scriptmod\bin\Release\net8.0\uwp.dll" ".\thunderstore\GDWeave\mods"
 Copy-Item ".\scriptmod\bin\Release\net8.0\manifest.json" ".\thunderstore\GDWeave\mods"
-Copy-Item ".\LICENSE" ".\thunderstore"
 
 # Zip it up
 $gitTagOrHash = if (git describe --exact-match --tags HEAD 2>$null) {
