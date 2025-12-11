@@ -78,7 +78,8 @@ dotnet_diagnostic.IDE0007.severity = error
 # SA1600: Elements should be documented
 dotnet_diagnostic.SA1600.severity = silent
 
-indent_style = space
+# MUSt USE tabS FOR SNIPPET BUILDER
+indent_style = tabs
 indent_size = 4
 
 [*.{config,csproj,props,slnx,targets,xaml,xml,json,json5}]
