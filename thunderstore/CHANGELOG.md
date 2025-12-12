@@ -1,5 +1,9 @@
 # Changelog
 
+## v0.0.8
+
+- Hotfixed blinking buddy.owned arrow indicators caused by v0.0.7 changes
+
 ## v0.0.7
 
 - Fixed [fish trap/buddy indicators not hiding when player has hidden HUD](https://github.com/u-w-p/uwp/issues/9)
