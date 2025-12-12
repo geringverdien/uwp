@@ -16,3 +16,12 @@ This project aims to fix all remaining game issues and incomplete/unreleased con
 - Fish with unusual sizes now have their size prefix and worth multiplier applied correctly
 
 </details>
+
+
+## 📚 Project Links
+
+- [Changelog](https://thunderstore.io/c/webfishing/p/uwp/Unofficial_Webfishing_Patch/changelog/)  
+- [Contributing (PRs welcome)](https://github.com/u-w-p/uwp/pulls)  
+- [Known Issues](https://github.com/u-w-p/uwp/issues?q=sort%3Aupdated-desc+is%3Aissue+is%3Aopen)  
+- [Feedback & Bug Reports (Discord)](https://discord.gg/kjf3FCAMDb)  
+- [Roadmap & Feature Requests](https://github.com/u-w-p/uwp/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20label%3Aenhancement)
