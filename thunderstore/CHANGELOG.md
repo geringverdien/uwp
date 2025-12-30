@@ -1,5 +1,10 @@
 # Changelog
 
+## v0.0.10 - 👽
+
+- [Restorarp](https://github.com/u-w-p/uwp/issues/11) tharp securp alurp farp Florp
+- Unidentified Fish Object now has a friend
+
 ## v0.0.9 - Guitar Audio Enhancement Patches
 
 - Changed polyphony of each string 4 -> 6
