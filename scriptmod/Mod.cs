@@ -18,9 +18,11 @@ public class Mod : IMod
 
 		mi.RegisterScriptMod(FreecamInputFix.Create(mi));
 
-		mi.RegisterScriptMod(FishingProbabilityPatch.Create(mi));
-
 		mi.RegisterScriptMod(GuitarQOLPatch.Create(mi));
+
+		mi.RegisterScriptMod(LettersPatch.Create(mi));
+
+		// mi.RegisterScriptMod(OptionsPatch.Create(mi));
 	}
 
 	public void Dispose()
