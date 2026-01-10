@@ -1,5 +1,15 @@
 # Changelog
 
+## v0.1.0
+
+- Added UWP/Modfishing Discord link to main menu
+- New patch: secondary notification when receiving a letter (#23)
+- New patch: Pressing E while in the menu will no longer interrupt typing & close the menu
+
+### Internal
+
+- Refactored patches into standalone files for readability, ease of contribution, etc.
+
 ## v0.0.10 - 👽
 
 - [Restorarp](https://github.com/u-w-p/uwp/issues/11) tharp securp alurp farp Florp
