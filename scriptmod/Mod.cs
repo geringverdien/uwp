@@ -1,6 +1,5 @@
-﻿using GDWeave;
+using GDWeave;
 using patches;
-using util.LexicalTransformer;
 
 namespace uwp.Unofficial_Webfishing_Patch;
 
@@ -22,7 +21,7 @@ public class Mod : IMod
 
 		mi.RegisterScriptMod(LettersPatch.Create(mi));
 
-		// mi.RegisterScriptMod(OptionsPatch.Create(mi));
+		mi.RegisterScriptMod(LeftoverMenuHotkeyFix.Create(mi));
 	}
 
 	public void Dispose()
