@@ -22,7 +22,9 @@ public class Mod : IMod
 		mi.RegisterScriptMod(LettersPatch.Create(mi));
 
 		mi.RegisterScriptMod(LeftoverMenuHotkeyFix.Create(mi));
-	}
+
+		mi.RegisterScriptMod(AntiNetworkingCrashesPatch.Create(mi));
+    }
 
 	public void Dispose()
 	{
