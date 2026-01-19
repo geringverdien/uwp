@@ -21,7 +21,7 @@ public static class AntiNetworkingCrashesPatch
 					.Do(Operation.Append)
 					.Matching(TransformationPatternFactory.CreateGlobalsPattern())
 					.With(
-                        """
+						"""
 
 						func array_is_safe(arr = []): 
 							for v in arr:
@@ -52,13 +52,17 @@ public static class AntiNetworkingCrashesPatch
 						0
 					)
 			)
-            .AddRule(
+			.AddRule(
 				new TransformationRuleBuilder()
 					.Named("filter incoming packets for crash methods")
 					.Do(Operation.Append)
-					.Matching(TransformationPatternFactory.CreateGdSnippetPattern("FLUSH_PACKET_INFORMATION[PACKET_SENDER] += 1"))
+					.Matching(
+						TransformationPatternFactory.CreateGdSnippetPattern(
+							"FLUSH_PACKET_INFORMATION[PACKET_SENDER] += 1"
+						)
+					)
 					.With(
-                        """
+						"""
 
 
 						if DATA.has("params"):

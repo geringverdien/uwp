@@ -4,8 +4,7 @@ var menu_button = preload("res://mods/uwp/Scenes/discord_button.tscn")
 var option_patches = preload("res://mods/uwp/patches/better-settings-numbers/better-settings-numbers.gd")
 
 var patches := [
-	preload("res://mods/uwp/patches/persistent-ignores.gd"),
-	preload("res://mods/uwp/patches/unlimit-props.gd")
+	preload("res://mods/uwp/patches/persistent-ignores.gd"), preload("res://mods/uwp/patches/unlimit-props.gd")
 ]
 
 
@@ -26,11 +25,11 @@ func _join_tree(node: Node) -> void:
 	if in_game:
 		get_tree().disconnect("node_added", self, "_join_tree")
 		self._load_patches()
-	
 
 
 func _add_menu_button(menu: Node) -> void:
-	if menu.name != "main_menu": return
+	if menu.name != "main_menu":
+		return
 	var menu_buttons: Node = menu.get_node("VBoxContainer")
 
 	var button: Button = menu_button.instance()

@@ -4,5 +4,4 @@ namespace uwp.Unofficial_Webfishing_Patch;
 
 /// <summary>
 /// </summary>
-public class ConfigFileSchema
-{}
+public class ConfigFileSchema { }

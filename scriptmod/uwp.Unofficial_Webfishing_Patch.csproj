@@ -10,29 +10,34 @@
 		<Authors>UWP</Authors>
 		<Company>UWP</Company>
 	</PropertyGroup>
-
 	<ItemGroup>
-  <Reference Include="GDWeave">
-    <HintPath>$(GDWeavePath)/core/GDWeave.dll</HintPath>
-    <Private>false</Private>
-  </Reference>
-
-  <Reference Include="Serilog">
-    <HintPath>$(GDWeavePath)/core/Serilog.dll</HintPath>
-    <Private>false</Private>
-  </Reference>
-</ItemGroup>
-
+		<Reference Include="GDWeave">
+			<HintPath>$(GDWeavePath)/core/GDWeave.dll</HintPath>
+			<Private>false</Private>
+		</Reference>
+		<Reference Include="Serilog">
+			<HintPath>$(GDWeavePath)/core/Serilog.dll</HintPath>
+			<Private>false</Private>
+		</Reference>
+	</ItemGroup>
 	<ItemGroup>
 		<None Include="manifest.json" CopyToOutputDirectory="PreserveNewest" />
 	</ItemGroup>
-
 	<Target Name="PostBuild" AfterTargets="PostBuildEvent" Condition="'$(GDWeavePath)' != ''">
 		<PropertyGroup>
-			<IsWindows Condition="'$([System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform($([System.Runtime.InteropServices.OSPlatform]::Windows)))'">true</IsWindows>
-			<IsLinux Condition="'$([System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform($([System.Runtime.InteropServices.OSPlatform]::Linux)))'">true</IsLinux>
+			<IsWindows
+				Condition="'$([System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform($([System.Runtime.InteropServices.OSPlatform]::Windows)))'"
+				>true</IsWindows
+			>
+			<IsLinux
+				Condition="'$([System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform($([System.Runtime.InteropServices.OSPlatform]::Linux)))'"
+				>true</IsLinux
+			>
 		</PropertyGroup>
-		<Exec Command="xcopy /Y /I &quot;$(TargetDir)&quot; &quot;$(GDWeavePath)/mods/$(AssemblyName)&quot;" Condition="'$(IsWindows)' == 'true'" />
+		<Exec
+			Command="xcopy /Y /I &quot;$(TargetDir)&quot; &quot;$(GDWeavePath)/mods/$(AssemblyName)&quot;"
+			Condition="'$(IsWindows)' == 'true'"
+		/>
 		<Exec Command="cp -r $(TargetDir) '$(GDWeavePath)/mods/$(AssemblyName)/'" Condition="'$(IsLinux)' == 'true'" />
 	</Target>
 </Project>

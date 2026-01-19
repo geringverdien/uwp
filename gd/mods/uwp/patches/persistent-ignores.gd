@@ -39,32 +39,40 @@ func _add_ignore(id_or_ids):
 func _get_ignored_steam_users() -> void:
 	var ignored_users := []
 	for i in range(Steam.getFriendCount(Steam.FRIEND_FLAG_BLOCKED | Steam.FRIEND_FLAG_IGNORED)):
-		yield (get_tree().create_timer(0.4), "timeout")
+		yield(get_tree().create_timer(0.4), "timeout")
 		var steam_id = Steam.getFriendByIndex(i, Steam.FRIEND_FLAG_BLOCKED | Steam.FRIEND_FLAG_IGNORED)
 		ignored_users.append(steam_id)
 	_debug("ignored users", ignored_users)
 	self._add_ignore(ignored_users)
 
+
 func _exit_tree() -> void:
-	if Ignores_File.is_open(): Ignores_File.close()
+	if Ignores_File.is_open():
+		Ignores_File.close()
+
 
 func _update_lists() -> void:
 	_debug("Updating ignored players list...")
 	_get_ignored_steam_users()
 
+
 func _is_player_ignored(player):
 	return Steam.getFriendRelationship(player.owner_id) in [1, 5]
+
 
 func _on_entity_spawn(node: Node):
 	if node.name.begins_with("@player@"):
 		if _is_player_ignored(node):
 			_add_ignore(node.owner_id)
 
+
 func _ready():
-	get_tree().current_scene.get_node("Viewport/main/entities").connect("child_entered_tree", self, "'_on_entity_spawn'")
+	get_tree().current_scene.get_node("Viewport/main/entities").connect(
+		"child_entered_tree", self, "'_on_entity_spawn'"
+	)
 	if not Ignores_File.file_exists(IGNORES_FILE_PATH):
-		Ignores_File.open(IGNORES_FILE_PATH,File.WRITE_READ)
-		Ignores_File.store_string('{}')
+		Ignores_File.open(IGNORES_FILE_PATH, File.WRITE_READ)
+		Ignores_File.store_string("{}")
 		Ignores_File.close()
 	Ignores_File.open(IGNORES_FILE_PATH, File.READ)
 	var content = JSON.parse(Ignores_File.get_as_text())

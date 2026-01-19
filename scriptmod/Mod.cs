@@ -26,7 +26,7 @@ public class Mod : IMod
 		mi.RegisterScriptMod(AntiNetworkingCrashesPatch.Create(mi));
 
 		OptionsPatches.RegisterAll(mi);
-    }
+	}
 
 	public void Dispose()
 	{
