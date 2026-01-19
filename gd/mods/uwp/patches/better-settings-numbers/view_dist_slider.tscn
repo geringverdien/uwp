@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://mods/uwp/patches/better-settings-numbers/view_dist_slider.gd" type="Script" id=1]
+
+[node name="viewd_vbox" type="VBoxContainer"]
+margin_right = 40.0
+margin_bottom = 40.0
+size_flags_horizontal = 3
+size_flags_vertical = 5
+script = ExtResource( 1 )
+
+[node name="viewd_label" type="Label" parent="."]
+margin_right = 40.0
+margin_bottom = 14.0
+align = 2
+
+[node name="viewd_slider" type="HSlider" parent="."]
+margin_top = 18.0
+margin_right = 40.0
+margin_bottom = 34.0
+min_value = 64.0
+max_value = 8192.0
+step = 64.0
+value = 8192.0
+
+[connection signal="value_changed" from="viewd_slider" to="." method="_on_viewd_slider_value_changed"]

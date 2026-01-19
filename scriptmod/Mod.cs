@@ -22,6 +22,8 @@ public class Mod : IMod
 		mi.RegisterScriptMod(LettersPatch.Create(mi));
 
 		mi.RegisterScriptMod(LeftoverMenuHotkeyFix.Create(mi));
+
+        OptionsPatches.RegisterAll(mi);
 	}
 
 	public void Dispose()
