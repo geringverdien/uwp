@@ -1,5 +1,10 @@
 # Changelog
 
+## v0.2.0
+
+- New patch: safeguards to prevent game client from crashing when receiving malformed network packets (#36)
+- New patch: granular settings controls for FPS, pixelization, view distance (#28)
+
 ## v0.1.0
 
 - Added UWP/Modfishing Discord link to main menu
