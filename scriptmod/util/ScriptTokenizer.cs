@@ -386,6 +386,11 @@ public static class ScriptTokenizer
 				continue;
 			}
 
+			if (text[i] == '\r')
+			{
+				continue;
+			}
+
 			// This is stupid and awful
 			if (text[i] == '\n')
 			{
