@@ -16,6 +16,8 @@ This project aims to fix all remaining game issues and incomplete/unreleased con
 - Fish with unusual sizes now have their size prefix and worth multiplier applied correctly
 - UI Fixes
 - Guitar audio quality improvements, MIDI playback improvement
+- Adds safeguards against some networking-related crashes
+- Replaces the options entries for FPS, pixelization and view distance with more granular sliders
 
 </details>
 
