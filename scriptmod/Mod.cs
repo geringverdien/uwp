@@ -57,8 +57,9 @@ public class Mod : IMod
 		if (config.OptionsPatches)
 		{
 		OptionsPatches.RegisterAll(mi);
-		}
-	}
+
+		mi.RegisterScriptMod(UnlistedLobbyPatch.Create(mi));
+    }
 
 	public void Dispose()
 	{
