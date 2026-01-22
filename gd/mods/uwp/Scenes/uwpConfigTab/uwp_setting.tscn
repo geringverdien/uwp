@@ -3,7 +3,6 @@
 [node name="setting" type="Control"]
 margin_right = 688.0
 rect_min_size = Vector2( 0, 34 )
-hint_tooltip = "garbage text"
 size_flags_horizontal = 3
 
 [node name="setting_container" type="HBoxContainer" parent="."]

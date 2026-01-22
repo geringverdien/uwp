@@ -1,5 +1,7 @@
 extends Node
 
+
+
 #this is all ugly
 onready var main_options_container = get_node(
 	"/root/OptionsMenu/Control/Panel/tabs_main/main/ScrollContainer/HBoxContainer/VBoxContainer"
@@ -21,6 +23,10 @@ onready var new_view = preload("res://mods/uwp/patches/better-settings-numbers/v
 
 
 func _ready():
+	var config = get_node("/root/uwp/ConfigHandler")
+	if config.loaded_settings.get("OptionsPatches") == false:
+		return
+		
 	var slider_position = options_separator.get_position_in_parent()
 
 	var old_fps_dropdown = fps_limit.get_node("fpslmit")

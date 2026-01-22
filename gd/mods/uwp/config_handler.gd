@@ -4,7 +4,7 @@ extends Node
 ### IF IN EDITOR, SET PATH TO UWP CONFIG FILE HERE ###
 ######################################################
 
-var json_path := "/home/alexander/.config/r2modmanPlus-local/WEBFISHING/profiles/leer/GDWeave/configs/"
+const json_editor_path := "/home/alexander/.config/r2modmanPlus-local/WEBFISHING/profiles/leer/GDWeave/configs/"
 
 ######################################################
 ### IF IN EDITOR, SET PATH TO UWP CONFIG FILE HERE ###
@@ -19,16 +19,20 @@ var option_uwp_tab = preload("res://mods/uwp/Scenes/uwpConfigTab/UWP_tab.tscn")
 var options_uwp_container = preload("res://mods/uwp/Scenes/uwpConfigTab/uwp_settings_container.tscn").instance()
 var options_uwp_setting = preload("res://mods/uwp/Scenes/uwpConfigTab/uwp_setting.tscn")
 
-var parse_results
+var loaded_settings
+var config_path
 
 func _ready():
+	OptionsMenu.connect("_options_update", self, "on_options_update")
+	
 	var json_file = get_config_file()
 	var parsed = JSON.parse(json_file.get_as_text())
 	if parsed.error != OK:
 		print("uh oh spaghetti o's we couldnt read the setting file lets bail")
 		return
 	
-	parse_results = parsed.result
+	var parse_results = parsed.result
+	loaded_settings = parse_results.duplicate()
 	options_buttons.add_child(option_uwp_tab.instance())
 	var toggles_container = options_uwp_container.get_node("ScrollContainer/HBoxContainer/toggles_container")
 	
@@ -51,11 +55,9 @@ func _ready():
 	options_tabs.add_child(options_uwp_container)
 	
 		
-		
 func get_config_file() -> File:
-	var config_path
 	if OS.is_debug_build():
-		config_path = json_path + "uwp.json"
+		config_path = json_editor_path + "uwp.json"
 		
 	else:
 		for arg in OS.get_cmdline_args():
@@ -68,3 +70,18 @@ func get_config_file() -> File:
 	
 	return json_file
 	
+func on_options_update():
+	var uwp_options = OptionsMenu.get_node("Control/Panel/tabs_main/uwp/ScrollContainer/HBoxContainer/toggles_container")
+	
+	for child in uwp_options.get_children():
+		var patch_name = child.name
+		var option_button = child.get_node("setting_container/OptionButton")
+		var patch_value = option_button.selected
+		loaded_settings[patch_name] = bool(patch_value)
+		
+	var new_file = File.new()
+	if new_file.open(config_path, File.WRITE) == OK:
+		new_file.store_string(JSON.print(loaded_settings, "\n"))
+		new_file.close()
+	
+	print(loaded_settings)
