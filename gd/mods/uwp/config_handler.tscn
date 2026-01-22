@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://mods/uwp/config_handler.gd" type="Script" id=1]
+[ext_resource path="res://mods/uwp/Assets/PatchDataHolder.gd" type="Script" id=2]
+
+[node name="ConfigHandler" type="Node"]
+script = ExtResource( 1 )
+
+[node name="PatchDataHolder" type="Node" parent="."]
+script = ExtResource( 2 )

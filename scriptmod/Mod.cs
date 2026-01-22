@@ -7,6 +7,8 @@ public class Mod : IMod
 {
 	public Mod(IModInterface mi)
 	{
+		var config = new Config(mi.ReadConfig<ConfigFileSchema>());
+		
 		mi.RegisterScriptMod(LobbyPlayerCountPatch.Create(mi));
 
 		mi.RegisterScriptMod(RevertLobbySizeModdedTagsPatch.Create(mi));
