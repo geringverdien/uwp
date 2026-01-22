@@ -1,0 +1,31 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://mods/uwp/Scenes/uwpConfigTab/uwp_Button.gd" type="Script" id=1]
+
+[node name="UWP_Panel" type="Panel"]
+anchor_left = 0.484302
+anchor_top = -0.06
+anchor_right = 0.645302
+anchor_bottom = 0.127
+margin_left = 0.0559998
+margin_top = -0.119999
+margin_right = 0.301178
+margin_bottom = -0.296005
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Label" type="Label" parent="."]
+anchor_right = 1.0
+anchor_bottom = 0.281
+margin_bottom = 32.038
+text = "UWP"
+align = 1
+
+[node name="Button" type="Button" parent="."]
+anchor_right = 1.0
+anchor_bottom = 0.617
+margin_right = 0.106781
+margin_bottom = 0.343002
+flat = true
+script = ExtResource( 1 )
