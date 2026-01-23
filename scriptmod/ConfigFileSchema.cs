@@ -15,4 +15,5 @@ public class ConfigFileSchema {
     [JsonInclude] public bool LeftoverMenuHotkeyFix = true;
     [JsonInclude] public bool AntiNetworkingCrashesPatch = true;
     [JsonInclude] public bool OptionsPatches = true;
+    [JsonInclude] public bool FriendsOnlyLobbyPatch = true;
 }

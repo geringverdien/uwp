@@ -13,4 +13,5 @@ public class Config(ConfigFileSchema configFile) {
     [JsonInclude] public bool LeftoverMenuHotkeyFix = configFile.LeftoverMenuHotkeyFix;
     [JsonInclude] public bool AntiNetworkingCrashesPatch = configFile.AntiNetworkingCrashesPatch;
     [JsonInclude] public bool OptionsPatches = configFile.OptionsPatches;
- }
+    [JsonInclude] public bool FriendsOnlyLobbyPatch = configFile.FriendsOnlyLobbyPatch;
+}
