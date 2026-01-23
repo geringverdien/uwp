@@ -19,7 +19,7 @@ public class Mod : IMod
 		mi.RegisterScriptMod(LeftoverMenuHotkeyFix.Create(mi));
 		mi.RegisterScriptMod(AntiNetworkingCrashesPatch.Create(mi));
 		OptionsPatches.RegisterAll(mi);
-		mi.RegisterScriptMod(FriendsOnlyLobbyPatch.Create(mi));
+		mi.RegisterScriptMod(UnlistedLobbyPatch.Create(mi));
 	}
 
 	public void Dispose()
