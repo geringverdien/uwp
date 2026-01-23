@@ -11,7 +11,8 @@ const patch_names := {
 	"LettersPatch": "Letters Patch",
 	"LeftoverMenuHotkeyFix": "Hotkey Fix Patch",
 	"AntiNetworkingCrashesPatch": "Networking Crashes Patch",
-	"OptionsPatches": "Options Patch"
+	"OptionsPatches": "Options Patch",
+	"FriendsOnlyLobbyPatch": "Friends Only Lobby Patch",
 }
 
 const patch_descriptions := {
@@ -24,5 +25,6 @@ const patch_descriptions := {
 	"LettersPatch": "Tweaks letter notifications",
 	"LeftoverMenuHotkeyFix": "Fixes the menu closing while typing",
 	"AntiNetworkingCrashesPatch": "Adds some safeguards against networking-related crashes",
-	"OptionsPatches": "Replaces the options entries for FPS, pixelization and view distance to more granular sliders"
+	"OptionsPatches": "Replaces the options entries for FPS, pixelization and view distance to more granular sliders",
+	"FriendsOnlyLobbyPatch": "Adds a Friends Only lobby type (no lobby code, can only be joined via Steam)",
 }

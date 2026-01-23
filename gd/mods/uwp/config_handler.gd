@@ -4,7 +4,7 @@ extends Node
 ### IF IN EDITOR, SET PATH TO UWP CONFIG FILE HERE ###
 ######################################################
 
-const json_editor_path := "/home/alexander/.config/r2modmanPlus-local/WEBFISHING/profiles/leer/GDWeave/configs/"
+const json_editor_path := "C:\\Users\\User\\AppData\\Roaming\\r2modmanPlus-local\\WEBFISHING\\profiles\\test\\GDWeave\\configs"
 
 ######################################################
 ### IF IN EDITOR, SET PATH TO UWP CONFIG FILE HERE ###
