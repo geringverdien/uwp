@@ -17,11 +17,11 @@ public static class AntiNetworkingCrashesPatch
 			.Patching("res://Scenes/Singletons/SteamNetwork.gdc")
 			.AddRule(
 				new TransformationRuleBuilder()
-					.Named("define crash checker node")
+					.Named("define crash checker node, add debounce vars")
 					.Do(Operation.Append)
 					.Matching(TransformationPatternFactory.CreateGlobalsPattern())
 					.With(
-						"""
+                        """
 
 						func array_is_safe(arr = []): 
 							for v in arr:
@@ -47,6 +47,11 @@ public static class AntiNetworkingCrashesPatch
 								is_safe = array_is_safe(params.values())
 
 							return is_safe
+
+						var accept_debounce = false
+						var accept_debounce_timer = Time.get_ticks_msec()
+						var deny_debounce = false
+						var deny_debounce_timer = Time.get_ticks_msec()
 
 						""",
 						0
@@ -75,6 +80,39 @@ public static class AntiNetworkingCrashesPatch
 						""",
 						2
 					)
+			)
+			.AddRule(
+				new TransformationRuleBuilder()
+					.Named("prevent unibomber (letter notif debounce)")
+					.Do(Operation.ReplaceAll)
+					.Matching(
+						TransformationPatternFactory.CreateGdSnippetPattern(
+                            """
+							"letter_was_accepted":
+								PlayerData._letter_was_accepted()
+							"letter_was_denied":
+								PlayerData._letter_was_denied()
+							"""
+                        )
+                    )
+					.With(
+                    """
+					"letter_was_accepted":
+						accept_debounce = true
+						if Time.get_ticks_msec() - accept_debounce_timer > 1000:
+							accept_debounce = false
+							accept_debounce_timer = Time.get_ticks_msec()
+						if accept_debounce: return
+						PlayerData._letter_was_accepted()
+					"letter_was_denied":
+						deny_debounce = true
+						if Time.get_ticks_msec() - deny_debounce_timer > 1000:
+							deny_debounce = false
+							deny_debounce_timer = Time.get_ticks_msec()
+						if deny_debounce: return
+						PlayerData._letter_was_denied()
+					""",
+					3)
 			)
 			.Build();
 	}
