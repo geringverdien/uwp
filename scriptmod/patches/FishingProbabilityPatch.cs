@@ -1,6 +1,7 @@
 using GDWeave;
 using GDWeave.Modding;
 using util.LexicalTransformer;
+using uwp.Unofficial_Webfishing_Patch;
 
 namespace patches;
 
@@ -9,7 +10,7 @@ namespace patches;
 /// </summary>
 public static class FishingProbabilityPatch
 {
-	public static IScriptMod Create(IModInterface mi)
+	public static IScriptMod Create(IModInterface mi, Config config)
 	{
 		return new TransformationRuleScriptModBuilder()
 			.ForMod(mi)
@@ -39,6 +40,30 @@ public static class FishingProbabilityPatch
 					.Named("Add fixed roll function")
 					.Do(Operation.Append)
 					.Matching(TransformationPatternFactory.CreateGlobalsPattern())
+					.When(() => !config.BigFishMutations)
+					.With(
+						"""
+						func _fixed_roll_item_size(item):
+							var avg = item_data[item]["file"].average_size
+							var sigma = log(1.55)
+							var mu = log(avg)
+							var RNG = RandomNumberGenerator.new()
+							RNG.randomize()
+
+							var rand = RNG.randfn(mu, sigma)
+							var fishsize = exp(rand)
+							fishsize = max(stepify(fishsize, 0.01), 0.01)
+							return fishsize
+
+						"""
+					)
+			)
+			.AddRule(
+				new TransformationRuleBuilder()
+					.Named("Add fixed roll function and mutation")
+					.Do(Operation.Append)
+					.Matching(TransformationPatternFactory.CreateGlobalsPattern())
+					.When(() => config.BigFishMutations)
 					.With(
 						"""
 						func _fixed_roll_item_size(item):
