@@ -1,6 +1,7 @@
 .idea/
 .vs/
 .vscode/
+.mailmap
 *.user
 /local
 thunderstore/GDWeave/mods/*.*
