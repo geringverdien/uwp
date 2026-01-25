@@ -1,10 +1,10 @@
+*.ds_store
 .idea/
 .vs/
 .vscode/
 .mailmap
 *.user
 /local
-thunderstore/GDWeave/mods/*.*
 manifestation.toml
 manifestation/
 
