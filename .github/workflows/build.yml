@@ -18,8 +18,14 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: '8.x'
-      - name: Install dependencies
+          dotnet-version: "8.x"
+      - name: Install dependencies (1/2)
         run: dotnet restore ${{ env.PROJECT_PATH }}
+      - name: Install dependencies (2/2)
+        run: |
+          curl -L -o gdw.zip https://github.com/NotNite/GDWeave/releases/download/v2.0.14/GDWeave.zip
+          mkdir lib && unzip gdw.zip -d ./lib
       - name: Build
-        run: dotnet build ${{ env.PROJECT_PATH }} --configuration Release --no-restore
+        run: |
+          export GDWeavePath="$(pwd)/lib/GDWeave"
+          dotnet build ${{ env.PROJECT_PATH }} --configuration Release --no-restore
