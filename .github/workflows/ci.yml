@@ -9,23 +9,40 @@ on:
       - dev
       - main
 jobs:
-  build:
+  test-build:
     env:
       PROJECT_PATH: "scriptmod/uwp.Unofficial_Webfishing_Patch.csproj"
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      # - name: Install PowerShell
+      #   uses: PSModule/install-powershell@v1
+
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: "8.x"
-      - name: Install dependencies (1/2)
+
+      - name: Install Godot
+        uses: vitorgus/setup-godot
+        with:
+          godot-version: 3.5.2
+
+      - uses: actions/checkout@v5
+
+      - name: Build PCK
+        run: |
+          cp gd
+          godot --export "uwp" uwp.pck
+
+      - name: Install .Net dependencies (1/2)
         run: dotnet restore ${{ env.PROJECT_PATH }}
-      - name: Install dependencies (2/2)
+
+      - name: Install .Net dependencies (2/2)
         run: |
           curl -L -o gdw.zip https://github.com/NotNite/GDWeave/releases/download/v2.0.14/GDWeave.zip
           mkdir lib && unzip gdw.zip -d ./lib
-      - name: Build
+
+      - name: Build DLL
         run: |
           export GDWeavePath="$(pwd)/lib/GDWeave"
           dotnet build ${{ env.PROJECT_PATH }} --configuration Release --no-restore
