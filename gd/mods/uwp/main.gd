@@ -1,7 +1,10 @@
 extends Node
 
+var config_handler = preload("res://mods/uwp/config_handler.tscn")
 var menu_button = preload("res://mods/uwp/Scenes/discord_button.tscn")
 var option_patches = preload("res://mods/uwp/patches/better-settings-numbers/better-settings-numbers.gd")
+
+
 
 var patches := [
 	preload("res://mods/uwp/patches/persistent-ignores.gd"), preload("res://mods/uwp/patches/unlimit-props.gd")
@@ -9,6 +12,7 @@ var patches := [
 
 
 func _ready() -> void:
+	self.add_child(config_handler.instance(), true)
 	self.add_child(option_patches.new())
 	get_tree().connect("node_added", self, "_join_tree")
 	get_tree().connect("node_added", self, "_add_menu_button")

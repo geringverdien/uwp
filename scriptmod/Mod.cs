@@ -7,25 +7,19 @@ public class Mod : IMod
 {
 	public Mod(IModInterface mi)
 	{
+		var config = new Config(mi.ReadConfig<ConfigFileSchema>());
+
 		mi.RegisterScriptMod(LobbyPlayerCountPatch.Create(mi));
-
 		mi.RegisterScriptMod(RevertLobbySizeModdedTagsPatch.Create(mi));
-
-		mi.RegisterScriptMod(FishingProbabilityPatch.Create(mi));
-
+		mi.RegisterScriptMod(FishingProbabilityPatch.Create(mi, config));
 		mi.RegisterScriptMod(ExtraSmallFishPatch.Create(mi));
-
 		mi.RegisterScriptMod(FreecamInputFix.Create(mi));
-
 		mi.RegisterScriptMod(GuitarQOLPatch.Create(mi));
-
 		mi.RegisterScriptMod(LettersPatch.Create(mi));
-
 		mi.RegisterScriptMod(LeftoverMenuHotkeyFix.Create(mi));
-
 		mi.RegisterScriptMod(AntiNetworkingCrashesPatch.Create(mi));
-
 		OptionsPatches.RegisterAll(mi);
+		mi.RegisterScriptMod(UnlistedLobbyPatch.Create(mi));
 	}
 
 	public void Dispose()

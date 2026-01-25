@@ -2,12 +2,10 @@
 
 param(
     [string]$Configuration = "Release",
-    [string]$ProjectPath = "scriptmod\uwp.Unofficial_Webfishing_Patch.csproj",
-    [string]$GDWeavePath = "C:\Program Files (x86)\Steam\steamapps\common\WEBFISHING\GDWeave"
+    [string]$ProjectPath = "scriptmod\uwp.Unofficial_Webfishing_Patch.csproj"
 )
 
 # Clean and build
-$env:GDWeavePath = $GDWeavePath
 dotnet clean $ProjectPath --configuration $Configuration
 dotnet restore $ProjectPath
 dotnet build $ProjectPath --configuration $Configuration --no-restore

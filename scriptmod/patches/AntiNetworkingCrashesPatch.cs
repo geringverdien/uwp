@@ -17,15 +17,14 @@ public static class AntiNetworkingCrashesPatch
 			.Patching("res://Scenes/Singletons/SteamNetwork.gdc")
 			.AddRule(
 				new TransformationRuleBuilder()
-					.Named("define crash checker node")
-					.Do(Operation.Append)
+					.Named("define crash checker node, add debounce vars")
 					.Matching(TransformationPatternFactory.CreateGlobalsPattern())
 					.With(
 						"""
 
-						func array_is_safe(arr = []): 
+						func array_is_safe(arr = []):
 							for v in arr:
-								if typeof(v) == TYPE_NIL or (typeof(v) == TYPE_REAL and is_nan(v)): 
+								if typeof(v) == TYPE_NIL or (typeof(v) == TYPE_REAL and is_nan(v)):
 									return false
 
 								if typeof(v) == TYPE_ARRAY:
@@ -41,21 +40,22 @@ public static class AntiNetworkingCrashesPatch
 
 							var params = DATA.get("params")
 
-							if typeof(params) == TYPE_ARRAY: 
+							if typeof(params) == TYPE_ARRAY:
 								is_safe = array_is_safe(params)
-							elif typeof(params) == TYPE_DICTIONARY: 
+							elif typeof(params) == TYPE_DICTIONARY:
 								is_safe = array_is_safe(params.values())
 
 							return is_safe
 
-						""",
-						0
+						var last_letter_accepted_time = Time.get_ticks_msec()
+						var last_letter_denied_time = Time.get_ticks_msec()
+
+						"""
 					)
 			)
 			.AddRule(
 				new TransformationRuleBuilder()
-					.Named("filter incoming packets for crash methods")
-					.Do(Operation.Append)
+					.Named("Add packet validation and early return for invalid packets")
 					.Matching(
 						TransformationPatternFactory.CreateGdSnippetPattern(
 							"FLUSH_PACKET_INFORMATION[PACKET_SENDER] += 1"
@@ -64,16 +64,41 @@ public static class AntiNetworkingCrashesPatch
 					.With(
 						"""
 
-
 						if DATA.has("params"):
 							var is_safe = is_packet_safe(type, DATA)
 
 							if not is_safe:
-								print("blocked potential crash packet by " + Steam.getFriendPersonaName(PACKET_SENDER))
-								print("data: " + str(DATA.params))
 								return
 						""",
 						2
+					)
+			)
+			.AddRule(
+				new TransformationRuleBuilder()
+					.Named("Add throttling for letter notifications")
+					.Do(Operation.ReplaceAll)
+					.Matching(
+						TransformationPatternFactory.CreateGdSnippetPattern(
+							"""
+							"letter_was_accepted":
+								PlayerData._letter_was_accepted()
+							"letter_was_denied":
+								PlayerData._letter_was_denied()
+							"""
+						)
+					)
+					.With(
+						"""
+						"letter_was_accepted":
+							if Time.get_ticks_msec() - last_letter_accepted_time > 1000:
+								last_letter_accepted_time = Time.get_ticks_msec()
+								PlayerData._letter_was_accepted()
+						"letter_was_denied":
+							if Time.get_ticks_msec() - last_letter_denied_time > 1000:
+								last_letter_denied_time = Time.get_ticks_msec()
+								PlayerData._letter_was_denied()
+						""",
+						3
 					)
 			)
 			.Build();

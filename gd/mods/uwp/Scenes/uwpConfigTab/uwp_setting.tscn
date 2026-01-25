@@ -1,0 +1,26 @@
+[gd_scene format=2]
+
+[node name="setting" type="Control"]
+margin_right = 688.0
+rect_min_size = Vector2( 0, 34 )
+size_flags_horizontal = 3
+
+[node name="setting_container" type="HBoxContainer" parent="."]
+anchor_right = 1.0
+margin_bottom = 34.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="setting_container"]
+margin_right = 342.0
+margin_bottom = 34.0
+mouse_filter = 1
+size_flags_horizontal = 3
+size_flags_vertical = 5
+text = "awddadwawa"
+
+[node name="OptionButton" type="OptionButton" parent="setting_container"]
+margin_left = 346.0
+margin_right = 688.0
+margin_bottom = 34.0
+size_flags_horizontal = 3
+size_flags_vertical = 5
