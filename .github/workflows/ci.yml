@@ -23,7 +23,7 @@ jobs:
           dotnet-version: "8.x"
 
       - name: Install Godot
-        uses: vitorgus/setup-godot
+        uses: u-w-p/Setup-Godot@v2
         with:
           godot-version: 3.5.2
 
