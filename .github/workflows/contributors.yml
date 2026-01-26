@@ -14,7 +14,7 @@ jobs:
       - name: ♥️ Contributor List
         uses: akhilmhdh/contributors-readme-action@v2.3.11
         env:
-          GITHUB_TOKEN: ${{ secrets.TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           committer_username: "UWP-bot"
           committer_email: "uwp-bot@users.noreply.github.com"
