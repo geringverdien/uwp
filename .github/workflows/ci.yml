@@ -31,7 +31,7 @@ jobs:
 
       - name: Build PCK
         run: |
-          cp gd
+          cd gd
           godot --export "uwp" uwp.pck
 
       - name: Install .Net dependencies (1/2)
