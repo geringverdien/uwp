@@ -21,7 +21,7 @@ public class Mod : IMod
 		OptionsPatches.RegisterAll(mi);
 		mi.RegisterScriptMod(UnlistedLobbyPatch.Create(mi));
 		mi.RegisterScriptMod(ClampPunchCountPatch.Create(mi));
-    }
+	}
 
 	public void Dispose()
 	{
