@@ -7,6 +7,7 @@ const DEBUG := false
 ## Cached local player ref
 var _local_player
 
+
 func _debug(msg, data = null) -> void:
 	if not DEBUG:
 		return
@@ -30,7 +31,8 @@ func _police_new_actor(data, sender = -1) -> void:
 	var actor_type = data.actor_type
 	var creator_id = data.creator_id if sender == -1 else Network.STEAM_ID
 	var creator_name = Network._get_username_from_id(creator_id)
-	if not actor_type == "canvas": return
+	if not actor_type == "canvas":
+		return
 	yield(get_tree().create_timer(0.125), "timeout")
 	clearActor(data.actor_id)
 	_debug("Auto-wiped new canvas from %s" % creator_name)
@@ -44,8 +46,8 @@ func clearActor(actorID) -> void:
 
 func _ready() -> void:
 	var config = get_node("/root/uwp/ConfigHandler")
-	if config.gd_only_settings.get("deleteCanvas") == false:
+	if not ("deleteCanvas" in config or config.gdweave_settings.get("deleteCanvas")):
 		return
-		
+
 	Network.connect("_instance_actor", self, "_police_new_actor")
 	_get_local_player()
