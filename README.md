@@ -22,7 +22,6 @@ This project aims to fix all remaining game issues and incomplete/unreleased con
 
 ## ♥️ Developed by
 
-<!-- readme: contributors -start -->
 <table>
 	<tbody>
 		<tr>
@@ -57,7 +56,6 @@ This project aims to fix all remaining game issues and incomplete/unreleased con
 		</tr>
 	<tbody>
 </table>
-<!-- readme: contributors -end -->
 
 ## 📚 Project Links
 
