@@ -43,5 +43,9 @@ func clearActor(actorID) -> void:
 
 
 func _ready() -> void:
+	var config = get_node("/root/uwp/ConfigHandler")
+	if config.gd_only_settings.get("deleteCanvas") == false:
+		return
+		
 	Network.connect("_instance_actor", self, "_police_new_actor")
 	_get_local_player()
