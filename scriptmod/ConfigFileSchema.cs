@@ -8,4 +8,7 @@ public class ConfigFileSchema
 {
 	[JsonInclude]
 	public bool rareBigFishMutations = false;
+
+	[JsonInclude]
+	public bool deleteCanvas = true;
 }

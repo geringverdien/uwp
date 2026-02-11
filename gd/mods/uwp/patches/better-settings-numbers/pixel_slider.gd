@@ -8,7 +8,6 @@ var pixel_amount = 0
 
 func _ready():
 	OptionsMenu.connect("_options_update", self, "_on_options_update")
-	
 
 
 func _on_options_update():
