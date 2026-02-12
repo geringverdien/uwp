@@ -1,5 +1,9 @@
 # Changelog
 
+## v0.3.0
+- New patch: [chalk canvas prop griefing prevention](https://github.com/u-w-p/uwp/issues/55)
+- New patch: [fix punching-alot song not playing despite having chosen violence](https://github.com/u-w-p/uwp/issues/6)
+
 ## v0.2.0
 
 - New patch: safeguards to prevent game client from crashing when receiving malformed network packets (#36)

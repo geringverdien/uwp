@@ -1,7 +1,5 @@
 extends Node
 
-
-
 #this is all ugly
 onready var main_options_container = get_node(
 	"/root/OptionsMenu/Control/Panel/tabs_main/main/ScrollContainer/HBoxContainer/VBoxContainer"
