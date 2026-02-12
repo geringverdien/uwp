@@ -1,8 +1,17 @@
 # Changelog
 
-## v0.3.0
+## v1.1.0 - 🥊🎵, 🚫🎨
+
 - New patch: [chalk canvas prop griefing prevention](https://github.com/u-w-p/uwp/issues/55)
-- New patch: [fix punching-alot song not playing despite having chosen violence](https://github.com/u-w-p/uwp/issues/6)
+- New patch: [fix punching-a-lot song not playing despite having chosen violence](https://github.com/u-w-p/uwp/issues/6)
+
+## v1.0.0
+
+- Added UWP options to settings menu!
+- New patch: [Fix](https://github.com/u-w-p/uwp/issues/37) - Unlisted lobbies are now _actually_ (properly) unlisted from the public games list in Steam
+  rather than flagged and hidden in the UI.
+  - This behavior is the same as the original game version.
+  - Note that unlisted lobbies cannot be joined via a shared code and players must either be sent an invite or otherwise join through Steam
 
 ## v0.2.0
 
