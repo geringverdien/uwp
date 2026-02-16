@@ -12,10 +12,11 @@ var patches := [
 
 
 func _ready() -> void:
-	self.add_child(config_handler.instance(), true)
-	self.add_child(option_patches.new())
 	get_tree().connect("node_added", self, "_join_tree")
 	get_tree().connect("node_added", self, "_add_menu_button")
+
+	self.add_child(config_handler.instance(), true)
+	self.add_child(option_patches.new())
 
 
 func _load_patches() -> void:
@@ -26,6 +27,23 @@ func _load_patches() -> void:
 func _join_tree(node: Node) -> void:
 	var map: Node = get_tree().current_scene
 	var in_game = map.name == "world"
+	var in_menu = node.name == "main_menu"
+
+	if in_menu:
+		# Hotfix for Option Patches
+		# TODO: Remove hotfix when option patches are fixed
+		if PlayerData.player_options.view_distance <= 3:
+			match PlayerData.player_options.view_distance:
+				3:
+					PlayerData.player_options.view_distance = 25
+				2:
+					PlayerData.player_options.view_distance = 120
+				1:
+					PlayerData.player_options.view_distance = 250
+				0:
+					PlayerData.player_options.view_distance = 8192
+			OptionsMenu.emit_signal("_options_update")
+
 	if in_game:
 		get_tree().disconnect("node_added", self, "_join_tree")
 		self._load_patches()

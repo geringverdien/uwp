@@ -107,8 +107,6 @@ public static class OptionsPatches
 						)
 						.With(
 							"""
-							if PlayerData.player_options.view_distance < 25:
-								PlayerData.player_options.view_distance = 8192
 							far = PlayerData.player_options.view_distance
 
 							""",

@@ -67,9 +67,7 @@ func _on_entity_spawn(node: Node):
 
 
 func _ready():
-	get_tree().current_scene.get_node("Viewport/main/entities").connect(
-		"child_entered_tree", self, "_on_entity_spawn"
-	)
+	get_tree().current_scene.get_node("Viewport/main/entities").connect("child_entered_tree", self, "_on_entity_spawn")
 	if not Ignores_File.file_exists(IGNORES_FILE_PATH):
 		Ignores_File.open(IGNORES_FILE_PATH, File.WRITE_READ)
 		Ignores_File.store_string("{}")
